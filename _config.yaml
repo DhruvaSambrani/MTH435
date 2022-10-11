@@ -1,2 +1,2 @@
-exclude: [*.md]
+exclude: *.md
 include: index.md
