@@ -1,2 +1,4 @@
-exclude: *.md
-include: index.md
+exclude: 
+  - *.md
+include: 
+  - index.md
