@@ -1,0 +1,2 @@
+exclude: [*.md]
+include: index.md
