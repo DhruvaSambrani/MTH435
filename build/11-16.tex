@@ -1,0 +1,111 @@
+\hypertarget{poisson-processes}{%
+\section{Poisson Processes}\label{poisson-processes}}
+
+\hypertarget{definition-1}{%
+\subsection{Definition 1}\label{definition-1}}
+
+Let \(N(t)\) be a counting process. If
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(N(t)\) has Independent increments
+\item
+  \(P(N(t+s) - N(s) = n) = \frac{e^{-\lambda t} (\lambda t)^n}{n!} \forall S \ge 0 \text{ some } \lambda > 0\)
+\end{enumerate}
+
+then it is a Poisson Process.
+
+\hypertarget{definition-2}{%
+\subsection{Definition 2}\label{definition-2}}
+
+Let there be a counting process \(N(t)\) such that
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(N(0) = 0\)
+\item
+  Independent increments
+\item
+  \(P(N(t) = 1) = \lambda t + o(t)\)
+\item
+  \(P(N(t) >= 2) = o(t)\)
+\end{enumerate}
+
+\textbf{Theorem:} The definitions are equivalent.
+
+\textbf{Proof:}
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\tightlist
+\item
+  \(\implies\) (2) is obvious from taking the taylor expansion.
+\end{enumerate}
+
+Define \(p_n(t) = P(N(t) = n)\)
+
+For \(n = 0\),
+
+\[\begin{aligned}
+p_0(t+h) = P(N(t+h) = 0) &= P(N(t) = 0, N(t+h) - N(t) = 0)\\
+&= P(N(t)) + P(N(t+h) - N(t) = 0) \leftarrow \text{  from independance}\\
+&= p_0(t)(1 - (P(N(t)=1) + P(N(t) >= 2))\\
+&= p_0(t)(1 - (\lambda h + o(h)))\\
+\end{aligned}\]
+
+\[\implies \frac{p_0(t+h) - p_0(t)}{h} = -\lambda p_0 + o(h)/h\]
+
+\[\implies \frac{d p_0}{d t} = -\lambda p_0\]
+
+\(p_0 = e^{-\lambda t}\)
+
+For \(n \ne 0\),
+
+\[\begin{aligned}
+p_n(t+h) =& P(N(t+h) = n, N(t) = n) \\
+&+ P(N(t+h) = n, N(t) = n-1) \\
+&+ P(N(t+h) = n, N(t) = n-2) + \dots \\
+=& p_n(t)(1-\lambda h) + p_{n-1}(t) \lambda h + 0
+\end{aligned}\]
+
+\[\implies \frac{p_n(t+h) - p_n(t)}{h} = -\lambda (p_n(t) - p_{n-1}(t))\]
+
+\[\frac{d p_n}{d t} = -\lambda (p_n -p_{n-1})\]
+
+Now using the poisson distribution as an ansatz and induction, we can
+prove
+
+\[\begin{aligned}
+\frac{d p_1}{d t} &= -\lambda (p_1 -p_0)\\
+&= - \lambda p_1 + \lambda e^{-\lambda t}
+\end{aligned}\]
+
+\[\implies p_1^\prime(t) + \lambda p_1(t) = \lambda e^{-\lambda t}\]
+
+One can solve using Linear differential equation using I.F.
+
+\hypertarget{inter-arrival-times}{%
+\subsection{Inter-arrival times}\label{inter-arrival-times}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(\{X_i\}\) are i.i.d with distribution \(\text{Exp}(\lambda)\)
+\item
+  \(P(X_1 < s | N(t)=1) = s/t I_{s < t} + I_{s > t}\)
+\end{enumerate}
+
+\[\begin{aligned}
+P(X_1 > y) &= P(N(y) = 0)\\
+           &= e^{-\lambda t}
+\end{aligned}\]
+
+\[\bar{F}(x) = 1- F(x) = 1- P(X_1 > x)\]
+
+It is easy to show that \(\bar{F}(x+h) = \bar{F}(x)\bar{F}(h)\), which
+is the memorylessness property
